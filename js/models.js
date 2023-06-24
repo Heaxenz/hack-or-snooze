@@ -74,13 +74,13 @@ class StoryList {
    */
 
   async addStory( user, newStory ) {
-    // UNIMPLEMENTED: complete this function!
-    let res = await axios.post('')
-    console.log(user, newStory)
+    let res = await axios.get(`${BASE_URL}/stories`)
+    console.log
+    // {token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvb2xpbyIsImlhdCI6MTY4NzYzNzk5OX0.qEeArVKjyDW0sx_q1lz5Wu5ifmXM-chXWXGhTBXd-Z4', newStory})
+    // console.log(res)
   }
-}
-
-
+  }
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvb2xpbyIsImlhdCI6MTY4NzYzNzk5OX0.qEeArVKjyDW0sx_q1lz5Wu5ifmXM-chXWXGhTBXd-Z4
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
  */
