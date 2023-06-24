@@ -71,16 +71,28 @@ class StoryList {
    * - obj of {title, author, url}
    *
    * Returns the new Story instance
-   */
+   */ 
 
-  async addStory( user, newStory ) {
-    let res = await axios.get(`${BASE_URL}/stories`)
-    console.log
-    // {token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvb2xpbyIsImlhdCI6MTY4NzYzNzk5OX0.qEeArVKjyDW0sx_q1lz5Wu5ifmXM-chXWXGhTBXd-Z4', newStory})
-    // console.log(res)
+  async addStory( user, {title, author, url} ) {
+    const token = user.loginToken;
+    let res = await axios.post('https://hack-or-snooze-v3.herokuapp.com/stories',{token, story:{title, author, url}})
+  console.log(res)
+  const story = new Story(res.data.story);
+  this.stories.unshift(story);
+  user.ownStories.unshift(story)
+  return story
   }
-  }
+}
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvb2xpbyIsImlhdCI6MTY4NzYzNzk5OX0.qEeArVKjyDW0sx_q1lz5Wu5ifmXM-chXWXGhTBXd-Z4
+async function delet(){
+  let res = await axios({
+    url: `${BASE_URL}/stories`,
+    method: "GET"
+  })
+  console.log(res)
+}
+
+
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
  */
