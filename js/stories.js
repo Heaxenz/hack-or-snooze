@@ -3,6 +3,7 @@
 // This is the global list of the stories, an instance of StoryList
 let storyList;
 
+
 /** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
@@ -50,3 +51,18 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+
+// it works just have to make it update instantly
+async function submitNewStory(e){
+  let author = $('#input-author').val();
+  let title = $('#input-title').val();
+  let url = $('#input-url').val();
+  let user = currentUser;
+  await storyList.addStory(user, {title, author, url})
+  
+  
+  }
+
+
+$newStoryForm.on('submit', submitNewStory)

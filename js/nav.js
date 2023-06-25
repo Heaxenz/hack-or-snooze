@@ -37,10 +37,10 @@ function updateNavOnLogin() {
 
 function navNewStory(evt){
   $newStoryForm.empty();
-  $newStoryForm.append('<p> author: <input id="input-author" type="text" placeholder="author name"></input></p>')
-  $newStoryForm.append('<p> title: <input id="input-title" type="text" placeholder="story title"></input></p>')
-  $newStoryForm.append('<p> url: <input id="input-url" type="text" placeholder="story url"></input></p><button>submit</button')
-
+  $newStoryForm.append('<p> author: <input id="input-author" type="text" placeholder="author name"></input></p>');
+  $newStoryForm.append('<p> title: <input id="input-title" type="text" placeholder="story title"></input></p>');
+  $newStoryForm.append('<p> url: <input id="input-url" type="text" placeholder="story url"></input></p><button type="submit" id="input-button">submit</button');
+  $newStoryForm.show();
 }
 
 $navNewStory.on('click', navNewStory)
