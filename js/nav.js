@@ -34,3 +34,13 @@ function updateNavOnLogin() {
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+function navNewStory(evt){
+  $newStoryForm.empty();
+  $newStoryForm.append('<p> author: <input id="input-author" type="text" placeholder="author name"></input></p>')
+  $newStoryForm.append('<p> title: <input id="input-title" type="text" placeholder="story title"></input></p>')
+  $newStoryForm.append('<p> url: <input id="input-url" type="text" placeholder="story url"></input></p><button>submit</button')
+
+}
+
+$navNewStory.on('click', navNewStory)
