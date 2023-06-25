@@ -55,13 +55,16 @@ function putStoriesOnPage() {
 
 // it works just have to make it update instantly
 async function submitNewStory(e){
+  e.preventDefault();
   let author = $('#input-author').val();
   let title = $('#input-title').val();
   let url = $('#input-url').val();
-  let user = currentUser;
-  await storyList.addStory(user, {title, author, url})
-  
-  
+  let username = currentUser.username;
+  const story = await storyList.addStory(currentUser, {title, author, url, username})
+  const $newStory = generateStoryMarkup(story);
+  $allStoriesList.prepend($newStory)
+  $newStoryForm.empty();
+  $newStoryForm.hide();
   }
 
 
