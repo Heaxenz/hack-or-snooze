@@ -26,6 +26,7 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+      <input class='fav-btns'type="checkbox"></input>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -60,7 +61,7 @@ async function submitNewStory(e){
   let title = $('#input-title').val();
   let url = $('#input-url').val();
   let username = currentUser.username;
-  const story = await storyList.addStory(currentUser, {title, author, url, username})
+  const story = await storyList.addStory(username, {title, author, url, username})
   const $newStory = generateStoryMarkup(story);
   $allStoriesList.prepend($newStory)
   $newStoryForm.empty();
@@ -69,3 +70,13 @@ async function submitNewStory(e){
 
 
 $newStoryForm.on('submit', submitNewStory)
+
+
+async function favoritesCheck(e){
+
+  console.log(currentUser)
+
+}
+
+$favoriteBtns.on('click', favoritesCheck)
+console.log(User.username)

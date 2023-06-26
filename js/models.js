@@ -78,7 +78,7 @@ class StoryList {
     let res = await axios.post('https://hack-or-snooze-v3.herokuapp.com/stories',{token, story:{title, author, url}})
   const story = new Story(res.data.story);
   this.stories.unshift(story);
-  user.ownStories.unshift(story)
+  user.ownStories.unshift(story);
   return story
   }
 }
