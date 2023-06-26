@@ -81,7 +81,18 @@ class StoryList {
   user.ownStories.unshift(story);
   return story
   }
-}
+
+  async addToFavorites(username, storyId){
+    const token = username.loginToken;
+    let res = await axios.post(`https://hack-or-snooze-v3.herokuapp.com/users/${username}/favorites/${storyId}`, {token})
+
+  }
+
+
+
+};
+
+
 
 
 

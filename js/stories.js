@@ -70,13 +70,3 @@ async function submitNewStory(e){
 
 
 $newStoryForm.on('submit', submitNewStory)
-
-
-async function favoritesCheck(e){
-
-  console.log(currentUser)
-
-}
-
-$favoriteBtns.on('click', favoritesCheck)
-console.log(User.username)
