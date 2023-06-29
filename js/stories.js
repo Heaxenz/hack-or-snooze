@@ -3,7 +3,6 @@
 // This is the global list of the stories, an instance of StoryList
 let storyList;
 
-
 /** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
@@ -25,8 +24,8 @@ function generateStoryMarkup(story) {
 
   const hostName = story.getHostName();
   return $(`
-      <li id="${story.storyId}">
-      <input class='fav-btns'type="checkbox"></input>
+      <li class="story-id" id="${story.storyId}">
+      <button id="fav-star">&star;</button>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -54,19 +53,29 @@ function putStoriesOnPage() {
 }
 
 
-// it works just have to make it update instantly
-async function submitNewStory(e){
+async function generateNewStory(e){
   e.preventDefault();
-  let author = $('#input-author').val();
-  let title = $('#input-title').val();
-  let url = $('#input-url').val();
-  let username = currentUser.username;
-  const story = await storyList.addStory(username, {title, author, url, username})
-  const $newStory = generateStoryMarkup(story);
-  $allStoriesList.prepend($newStory)
+  
+  const author = $('#story-in-author').val()
+  const title = $('#story-in-title').val()
+  const url = $('#story-in-url').val()
+  const user = currentUser.username
+  const storyInfo = {title, author, url}
+  const story = await storyList.addStory(user ,storyInfo);
+  const $story = generateStoryMarkup(story);
+  $allStoriesList.prepend($story);
   $newStoryForm.empty();
   $newStoryForm.hide();
-  }
+}
+
+$newStoryForm.on('submit', generateNewStory);
+
+//need
+//getting story id to add when clicked
+function addFav(){
+
+  console.log($starButton.parent('li'))
+}
 
 
-$newStoryForm.on('submit', submitNewStory)
+$allStoriesList.on('click', $starButton, addFav);

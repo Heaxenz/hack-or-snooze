@@ -35,12 +35,27 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
 }
 
-function navNewStory(evt){
+function getStoryForm(){
   $newStoryForm.empty();
-  $newStoryForm.append('<p> author: <input id="input-author" type="text" placeholder="author name"></input></p>');
-  $newStoryForm.append('<p> title: <input id="input-title" type="text" placeholder="story title"></input></p>');
-  $newStoryForm.append('<p> url: <input id="input-url" type="text" placeholder="story url"></input></p><button type="submit" id="input-button">submit</button');
+  $newStoryForm.append('<span>Author: <input type="text" id="story-in-author"></input></span> <span>Title: <input type="text" id="story-in-title"></input></span><span>URL: <input type="text" id="story-in-url"></input></span><button id="story-in-btn">submit</button>');
   $newStoryForm.show();
 }
 
-$navNewStory.on('click', navNewStory)
+$navSubmit.on('click', getStoryForm)
+
+//shows what are the users favorite stories
+function getFavoriteList(){
+  $allStoriesList.hide();
+  $userFavs.empty();
+  $userFavs.show();
+  let stories = currentUser.favorites
+  for(let story of stories){
+   let $story = generateStoryMarkup(story)
+   $userFavs.prepend($story)
+  
+  }
+  
+ 
+}
+
+$navFavorites.on('click', getFavoriteList)

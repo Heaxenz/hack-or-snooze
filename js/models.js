@@ -71,30 +71,22 @@ class StoryList {
    * - obj of {title, author, url}
    *
    * Returns the new Story instance
-   */ 
+   */
 
-  async addStory( user, {title, author, url} ) {
-    const token = user.loginToken;
-    let res = await axios.post('https://hack-or-snooze-v3.herokuapp.com/stories',{token, story:{title, author, url}})
-  const story = new Story(res.data.story);
-  this.stories.unshift(story);
-  user.ownStories.unshift(story);
-  return story
+  async addStory( user, {title, author, url}) {
+    // UNIMPLEMENTED: complete this function!
+    let token = currentUser.loginToken;
+    let res = await axios({
+      method: "POST",
+      url: `${BASE_URL}/stories`,
+      data: {token, story: {title, author, url}},
+    });
+   const story = new Story(res.data.story);
+   this.stories.unshift(story);
+   currentUser.ownStories.unshift(story);
+   return story;
   }
-
-  async addToFavorites(username, storyId){
-    const token = username.loginToken;
-    let res = await axios.post(`https://hack-or-snooze-v3.herokuapp.com/users/${username}/favorites/${storyId}`, {token})
-
-  }
-
-
-
-};
-
-
-
-
+}
 
 
 /******************************************************************************
@@ -126,7 +118,7 @@ class User {
     // store the login token on the user so it's easy to find for API calls.
     this.loginToken = token;
   }
-
+  
   /** Register new user in API, make User instance & return it.
    *
    * - username: a new username
@@ -211,4 +203,24 @@ class User {
       return null;
     }
   }
+
+  //user favorites
+
+  async addFavorites(story){
+    this.favorites.push(story);
 }
+}
+
+// async function userFav(){
+//   const username = 'chickenz';
+//   const storyId = '80abe0e4-54da-4896-90f9-a737536c4cab'
+//   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNoaWNrZW56IiwiaWF0IjoxNjg3OTk5NDA2fQ.8Im9L8GaTCQjbjo5Qy7IlzdImU3jVZzhQSMxjkNWTkI'
+//   const res = await axios({
+//     url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
+//     method: 'POST',
+//     data: {
+//       token
+//     }
+//   })
+//   console.log(res)
+// }
