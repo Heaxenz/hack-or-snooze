@@ -3,6 +3,8 @@
 body {
     font-family: Arimo, sans-serif;
     margin: 8px 7.5vw;
+    background: rgb(189,186,247);
+    background: radial-gradient(circle, rgba(189,186,247,1) 0%, rgba(255,181,243,1) 35%, rgba(164,240,255,1) 100%);
   }
   
   h1 {
@@ -34,10 +36,14 @@ body {
   
   /* This is the basic box that the main part of the page goes into */
   .container {
-    display: flex;
+    background-color: #ffffff;
+    height:32rem;
+    overflow:scroll;
+  }
+  .stories-container{
+    display:flex;
     flex-direction: column;
     align-self: center;
-    background-color: #f6f6ef;
   }
   
   .hidden {
@@ -104,6 +110,13 @@ body {
   
   .login-input label {
     width: 70px;
+  }
+
+  #new-story-form{
+   font-weight:bold;
+  }
+  .story-form-input{
+  display:flex;
   }
   
   
