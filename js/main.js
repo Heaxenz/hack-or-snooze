@@ -17,8 +17,10 @@ const $navSubmit = $("#nav-submit");
 const $newStoryForm = $("#new-story-form");
 const $newStoryBtn = $('#story-in-btn');
 const $navFavorites = $('#nav-favorites');
-const $starButton = $('#fav-star');
+const $starButton = $('.fav-star');
 const $userFavs = $('#user-favs')
+
+
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After

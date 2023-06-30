@@ -44,7 +44,7 @@ function getStoryForm(){
 $navSubmit.on('click', getStoryForm)
 
 //shows what are the users favorite stories
-function getFavoriteList(){
+function getFavoriteList(e){
   $allStoriesList.hide();
   $userFavs.empty();
   $userFavs.show();

@@ -37,6 +37,7 @@
   .story-user {
     display: block;
   }
-  #fav-star{
+  .fav-star{
     border:none;
+    
   }

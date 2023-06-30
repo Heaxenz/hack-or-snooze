@@ -206,21 +206,35 @@ class User {
 
   //user favorites
 
-  async addFavorites(story){
-    this.favorites.push(story);
-}
+  async addFavorites(storyId){
+    let username = currentUser.username;
+    let token = currentUser.loginToken;
+    let res = await axios({
+      url:`${BASE_URL}/users/${username}/favorites/${storyId}`,
+      method: "POST",
+      data:{
+        token
+      }
+    });
+    return res;
 }
 
-// async function userFav(){
-//   const username = 'chickenz';
-//   const storyId = '80abe0e4-54da-4896-90f9-a737536c4cab'
-//   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNoaWNrZW56IiwiaWF0IjoxNjg3OTk5NDA2fQ.8Im9L8GaTCQjbjo5Qy7IlzdImU3jVZzhQSMxjkNWTkI'
-//   const res = await axios({
-//     url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
-//     method: 'POST',
-//     data: {
-//       token
-//     }
-//   })
-//   console.log(res)
-// }
+
+//remove user Favorites
+async removeFavorite(storyId){
+  let username = currentUser.username;
+  let token = currentUser.loginToken;
+  let res = await axios({
+    url:`${BASE_URL}/users/${username}/favorites/${storyId}`,
+    method: "DELETE",
+    data:{
+      token
+    }
+  });
+  console.log(res)
+  return res;
+}
+
+
+
+}

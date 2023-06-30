@@ -25,7 +25,7 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li class="story-id" id="${story.storyId}">
-      <button id="fav-star">&star;</button>
+      <button class="fav-star">&#9734;</button>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -70,12 +70,21 @@ async function generateNewStory(e){
 
 $newStoryForm.on('submit', generateNewStory);
 
-//need
-//getting story id to add when clicked
-function addFav(){
 
-  console.log($starButton.parent('li'))
+// getting story id to add when clicked
+async function addFav(e){
+if(e.target.tagName === 'BUTTON'){
+let storyId = e.target.closest('li').id
+await currentUser.addFavorites(storyId)
+}
 }
 
+let $allStories = $('.stories-container').children();
+$allStories.on('click', addFav);
 
-$allStoriesList.on('click', $starButton, addFav);
+//have to make both work
+//toggle favorite or unfavorite
+async function removeFromFavs(){
+  console.log();
+}
+
